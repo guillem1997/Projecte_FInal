@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="US-ASCII">
+	<Title>Global Page</Title>
+	<script type="text/javascript">
+		function show(page){
+			for (i=1; i<4 ; i++){
+				var documento = document.getElementById(i);
+				if (documento.id == page){
+					documento.style.display = 'block';
+				} else{
+					documento.style.display = 'none';
+				}
+			}	
+		}
+	</script>
+</head>
+<body>
+Insert the header, sub-header, sideBar, footer... here <br>
+<a href="#" onclick="show('1');">Show Page 1</a>
+<a href="#" onclick="show('2');">Show Page 2</a>
+<a href="#" onclick="show('3');">Show Page 3</a><br>
+
+	 <div id="1" style="display:block">
+        Content of page 1
+     </div>
+    
+     <div id="2" style="display:none">
+        Content of page 2
+     </div>
+
+     <div id="3" style="display:none">       
+        Content of page 3
+     </div>
+</body>
+</html>
