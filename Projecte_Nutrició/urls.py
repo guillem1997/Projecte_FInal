@@ -22,5 +22,8 @@ urlpatterns = [
     path('home', views.home_page_view, name='home'),
     path('receptes', views.receptes_view, name='receptes'),
     path('ingredients', views.ingredients_view, name='ingredients'),
+    path('insertar', views.insert),
+    path('consultar', views.select),
+    path('anadir', views.anadir),
 
 ]
