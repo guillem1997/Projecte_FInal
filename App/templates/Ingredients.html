@@ -10,7 +10,8 @@
     <a href="{% url 'receptes' %}">Receptes</a>
     <a href="{% url 'ingredients' %}">Ingredients</a>
     <br><br>Insert new Ingredient:
-    <form method="POST" action="\ingredients">
+    <form method="POST" action="/ingredientes">
+        {% csrf_token %}
         <p>Nombre: <input type="text" name="nombre" size="40"></p>
         <p>Información Nutricional: <br>
                 Kcal:           <input type="text" name="name_Kcal" size="5"><br>
@@ -48,6 +49,7 @@
             November        <input type="checkbox" name="value_November"    value="1" checked="checked">
             December        <input type="checkbox" name="value_December"    value="1" checked="checked">
         </p>
+        <input type="submit" value="guardar">
     </form>
 
 </body>

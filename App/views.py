@@ -69,7 +69,7 @@ def insert(request):
     cursor.close()
     conn.close()
 
-    return HttpResponse('Insertado')
+    return redirect('http://127.0.0.1:8000/ingredients')
 
 def select(request):
     conn = psycopg2.connect(dbname="projecte_final",
