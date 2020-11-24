@@ -3,53 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Ingredients</title>
-
 </head>
 <body>
     <a href="{% url 'home' %}">Página Principal</a>
     <a href="{% url 'receptes' %}">Receptes</a>
     <a href="{% url 'ingredients' %}">Ingredients</a>
     <br><br>Insert new Ingredient:
-    <form method="POST" action="/ingredientes">
+    <form action="/insert" method="post" >
         {% csrf_token %}
-        <p>Nombre: <input type="text" name="nombre" size="40"></p>
-        <p>Información Nutricional: <br>
-                Kcal:           <input type="text" name="name_Kcal" size="5"><br>
-            Carbohidrates:  <input type="text" name="name_Carbohidrates" size="5"><br>
-            Proteina:       <input type="text" name="name_Proteina" size="5"><br>
-            Grasas:         <input type="text" name="name_Grasas" size="5"><br>
-            Fibra:          <input type="text" name="name_Fibra" size="5"><br>
+        <p>Name:            <input type="text" name="name_ingredient"       size="40"></p>
+        <p>Nutritional Facts:<br>
+            Kcal:           <input type="hidden"    name="name_Kcal"            value="No Data Available">
+                            <input type="text"      name="name_Kcal"                    size="5"><br>
+            Carbohydrates:  <input type="hidden"    name="name_Carbohidrates"   value="No Data Available">
+                            <input type="text"      name="name_Carbohidrates"           size="5"><br>
+            Protein:        <input type="hidden"    name="name_Proteina"        value="No Data Available">
+                            <input type="text"      name="name_Proteina"                size="5"><br>
+            Fat:            <input type="hidden"    name="name_Grasas"          value="No Data Available">
+                            <input type="text"      name="name_Grasas"                  size="5"><br>
+            Fiber:          <input type="hidden"    name="name_Fibra"           value="No Data Available">
+                            <input type="text"      name="name_Fibra"                   size="5"><br>
         </p>
-        <p>Tipo de dieta<br>
-            Omnivore        <input type="checkbox" name="value_Omnivore"   value="1">
-            Vegetarian      <input type="checkbox" name="value_Vegetarian" value="1">
-            Vegan           <input type="checkbox" name="value_Vegan"      value="1">
+        <p>Diet type<br>
+            Omnivore        <input type="hidden"   name="value_Omnivore"    value="0">
+                            <input type="checkbox" name="value_Omnivore"    value="1">
+            Vegetarian      <input type="hidden"   name="value_Vegetarian"  value="0">
+                            <input type="checkbox" name="value_Vegetarian"  value="1">
+            Vegan           <input type="hidden"   name="value_Vegan"       value="0">
+                            <input type="checkbox" name="value_Vegan"       value="1">
         </p>
-        <p>Alergens <br>
-            Milk            <input type="checkbox" name="value_Milk"        value="1">
-            Eggs            <input type="checkbox" name="value_Eggs"        value="1">
-            Fish            <input type="checkbox" name="value_Fish"        value="1">
-            Crustaceans     <input type="checkbox" name="value_Crustaceans" value="1">
-            Nuts            <input type="checkbox" name="value_Nuts"        value="1">
-            Peanuts         <input type="checkbox" name="value_Peanuts"     value="1">
-            Gluten          <input type="checkbox" name="value_Gluten"      value="1">
-            Soy             <input type="checkbox" name="value_Soy"         value="1">
+        <p>Alergens<br>
+            Milk            <input type="hidden"   name="value_Milk"        value="0">
+                            <input type="checkbox" name="value_Milk"        value="1">
+            Eggs            <input type="hidden"   name="value_Eggs"        value="0">
+                            <input type="checkbox" name="value_Eggs"        value="1">
+            Fish            <input type="hidden"   name="value_Fish"        value="0">
+                            <input type="checkbox" name="value_Fish"        value="1">
+            Crustaceans     <input type="hidden"   name="value_Crustaceans" value="0">
+                            <input type="checkbox" name="value_Crustaceans" value="1">
+            Nuts            <input type="hidden"   name="value_Nuts"        value="0">
+                            <input type="checkbox" name="value_Nuts"        value="1">
+            Peanuts         <input type="hidden"   name="value_Peanuts"     value="0">
+                            <input type="checkbox" name="value_Peanuts"     value="1">
+            Gluten          <input type="hidden"   name="value_Gluten"      value="0">
+                            <input type="checkbox" name="value_Gluten"      value="1">
+            Soy             <input type="hidden"   name="value_Soy"         value="0">
+                            <input type="checkbox" name="value_Soy"         value="1">
         </p>
         <p>Season<br>
-            January         <input type="checkbox" name="value_January"     value="1" checked="checked">
-            February        <input type="checkbox" name="value_February"    value="1" checked="checked">
-            Mars            <input type="checkbox" name="value_Mars"        value="1" checked="checked">
-            April           <input type="checkbox" name="value_April"       value="1" checked="checked">
-            May             <input type="checkbox" name="value_May"         value="1" checked="checked">
-            Jun             <input type="checkbox" name="value_Jun"         value="1" checked="checked">
-            July            <input type="checkbox" name="value_July"        value="1" checked="checked">
-            August          <input type="checkbox" name="value_August"      value="1" checked="checked">
-            September       <input type="checkbox" name="value_September"   value="1" checked="checked">
-            October         <input type="checkbox" name="value_October"     value="1" checked="checked">
-            November        <input type="checkbox" name="value_November"    value="1" checked="checked">
-            December        <input type="checkbox" name="value_December"    value="1" checked="checked">
+            January         <input type="hidden"   name="value_January"     value="0">
+                            <input type="checkbox" name="value_January"     value="1"   checked="checked">
+            February        <input type="hidden"   name="value_February"    value="0">
+                            <input type="checkbox" name="value_February"    value="1"   checked="checked">
+            Mars            <input type="hidden"   name="value_Mars"        value="0">
+                            <input type="checkbox" name="value_Mars"        value="1"   checked="checked">
+            April           <input type="hidden"   name="value_April"       value="0">
+                            <input type="checkbox" name="value_April"       value="1"   checked="checked">
+            May             <input type="hidden"   name="value_May"         value="0">
+                            <input type="checkbox" name="value_May"         value="1"   checked="checked">
+            Jun             <input type="hidden"   name="value_Jun"         value="0">
+                            <input type="checkbox" name="value_Jun"         value="1"   checked="checked">
+            July            <input type="hidden"   name="value_July"        value="0">
+                            <input type="checkbox" name="value_July"        value="1"   checked="checked">
+            August          <input type="hidden"   name="value_August"      value="0">
+                            <input type="checkbox" name="value_August"      value="1"   checked="checked">
+            September       <input type="hidden"   name="value_September"   value="0">
+                            <input type="checkbox" name="value_September"   value="1"   checked="checked">
+            October         <input type="hidden"   name="value_October"     value="0">
+                            <input type="checkbox" name="value_October"     value="1"   checked="checked">
+            November        <input type="hidden"   name="value_November"    value="0">
+                            <input type="checkbox" name="value_November"    value="1"   checked="checked">
+            December        <input type="hidden"   name="value_December"    value="0">
+                            <input type="checkbox" name="value_December"    value="1"   checked="checked">
         </p>
-        <input type="submit" value="guardar">
+        <button onclick="insert()">Save</button>
     </form>
 
 </body>

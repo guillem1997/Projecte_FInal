@@ -23,7 +23,7 @@ Insert the header, sub-header, sideBar, footer... here <br>
 <a href="#" onclick="show('3');">Show Page 3</a><br>
 
 	 <div id="1" style="display:block">
-        Content of page 1
+	 	Content of page 1
      </div>
     
      <div id="2" style="display:none">

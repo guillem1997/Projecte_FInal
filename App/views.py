@@ -27,10 +27,11 @@ def ingredients_view(request):
 
 
 def insert(request):
-    conn = psycopg2.connect(dbname="Projecte_Final",
-                            user="postgres",
-                            password='patata')
+    conn = psycopg2.connect(dbname      =   "Projecte_Final",
+                            user        =   "postgres",
+                            password    =   "patata")
 
+    name            =   request.POST["name_ingredient"]
     kcal            =   request.POST["name_Kcal"]
     carbohidrates   =   request.POST["name_Carbohidrates"]
     proteina        =   request.POST["name_Proteina"]
@@ -61,15 +62,16 @@ def insert(request):
     december        =   request.POST["value_December"]
 
     cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO ingredients VALUES ('{kcal}', '{carbohidrates}','{proteina}','{grasas}','{fibra}',"
-                   f"'{omnivore}','{vegetarian}','{vegan}','{milk}','{eggs}','{fish}','{crustaceans}',"
-                   f"'{nuts}',{peanut}',{gluten}',{soy}',{january}',{february}',{mars}',{april}',{may}',{jun}',"
-                   f"{july}',{august}',{september}',{october}',{november}',{december}');")
+    cursor.execute(f"INSERT INTO ingredients VALUES ('{name}','{kcal}','{carbohidrates}','{proteina}','{grasas}',"
+                   f"'{fibra}','{omnivore}','{vegetarian}','{vegan}','{milk}','{eggs}','{fish}','{crustaceans}',"
+                   f"'{nuts}','{peanut}','{gluten}','{soy}','{january}','{february}','{mars}','{april}','{may}',"
+                   f"'{jun}','{july}','{august}','{september}','{october}','{november}','{december}');")
     conn.commit()
     cursor.close()
     conn.close()
 
     return redirect('http://127.0.0.1:8000/ingredients')
+
 
 def select(request):
     conn = psycopg2.connect(dbname="projecte_final",
@@ -82,6 +84,7 @@ def select(request):
     conn.close()
 
     return HttpResponse(result)
+
 
 def anadir(request):
     conn = psycopg2.connect(dbname="projecte_final",
@@ -99,5 +102,3 @@ def anadir(request):
     conn.close()
 
     return redirect('http://127.0.0.1:8000/receptes')
-
-
