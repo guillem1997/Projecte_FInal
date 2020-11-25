@@ -9,28 +9,23 @@
     <a href="{% url 'receptes' %}">Receptes</a>
     <a href="{% url 'ingredients' %}">Ingredients</a>
     <br><br>Insert new Ingredient:
-    <form action="/insert" method="post" >
+    <form action="/new_ingredient" method="post" >
         {% csrf_token %}
-        <p>Name:            <input type="text" name="name_ingredient"       size="40"></p>
+        <p>Name:            <input type="text"      name="value_ingredient"              size="40"></p>
         <p>Nutritional Facts:<br>
-            Kcal:           <input type="hidden"    name="name_Kcal"            value="No Data Available">
-                            <input type="text"      name="name_Kcal"                    size="5"><br>
-            Carbohydrates:  <input type="hidden"    name="name_Carbohidrates"   value="No Data Available">
-                            <input type="text"      name="name_Carbohidrates"           size="5"><br>
-            Protein:        <input type="hidden"    name="name_Proteina"        value="No Data Available">
-                            <input type="text"      name="name_Proteina"                size="5"><br>
-            Fat:            <input type="hidden"    name="name_Grasas"          value="No Data Available">
-                            <input type="text"      name="name_Grasas"                  size="5"><br>
-            Fiber:          <input type="hidden"    name="name_Fibra"           value="No Data Available">
-                            <input type="text"      name="name_Fibra"                   size="5"><br>
+            Kcal:           <input type="text"      name="value_Kcal"                    size="5"><br>
+            Carbohydrates:  <input type="text"      name="value_Carbohidrates"           size="5"><br>
+            Protein:        <input type="text"      name="value_Proteina"                size="5"><br>
+            Fat:            <input type="text"      name="value_Grasas"                  size="5"><br>
+            Fiber:          <input type="text"      name="value_Fibra"                   size="5"><br>
         </p>
         <p>Diet type<br>
             Omnivore        <input type="hidden"   name="value_Omnivore"    value="0">
-                            <input type="checkbox" name="value_Omnivore"    value="1">
+                            <input type="checkbox" name="value_Omnivore"    value="1"   checked="checked">
             Vegetarian      <input type="hidden"   name="value_Vegetarian"  value="0">
-                            <input type="checkbox" name="value_Vegetarian"  value="1">
+                            <input type="checkbox" name="value_Vegetarian"  value="1"   checked="checked">
             Vegan           <input type="hidden"   name="value_Vegan"       value="0">
-                            <input type="checkbox" name="value_Vegan"       value="1">
+                            <input type="checkbox" name="value_Vegan"       value="1"   checked="checked">
         </p>
         <p>Alergens<br>
             Milk            <input type="hidden"   name="value_Milk"        value="0">
@@ -76,7 +71,7 @@
             December        <input type="hidden"   name="value_December"    value="0">
                             <input type="checkbox" name="value_December"    value="1"   checked="checked">
         </p>
-        <button onclick="insert()">Save</button>
+        <input type="submit">
     </form>
 
 </body>
