@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Receptes</title>
+</head>
+<body>
+    <a href="{% url 'home' %}">Página Principal</a>
+    <a href="{% url 'receptes' %}">Receptes</a>
+    <a href="{% url 'ingredients' %}">Ingredients</a>
+    <br><br>Insert new Recepy:
+    <form action="/new_recipe" method="post" >
+        {% csrf_token %}
+        <p>Title:                   <input type="text" name="value_title"          size="40"></p>
+        <p>Preparation time:        <input type="text" name="value_time"             size="40"></p><br>
+        <p>Difficulty:              <input type="text" name="value_difficulty"             size="40"></p><br>
+        <label for="descripcion_receta">Recepy</label> <br>
+		<textarea id="descripcion_receta" name="value_description" cols="40" rows="5"></textarea><br><br>
+        <input type="submit">
+    </form>
+
+</body>
+</html>

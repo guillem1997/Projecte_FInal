@@ -108,3 +108,26 @@ def select(request):
     conn.close()
 
     return HttpResponse(result)
+
+def recipes_view(request):
+    return render(request, 'inserts_receptes.html')
+
+def new_recipe(request):
+    conn = psycopg2.connect(dbname="Projecte_Final",
+                            user="postgres",
+                            password="patata")
+
+    title = request.POST["value_title"]
+    time = request.POST["value_time"]
+    difficulty = request.POST["value_difficulty"]
+    description = request.POST["value_description"]
+
+    cursor = conn.cursor()
+
+    cursor.execute("INSERT INTO plats VALUES (default, %s, %s, %s, %s)", (title, time, difficulty, description))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return redirect("http://127.0.0.1:8000/recipes")

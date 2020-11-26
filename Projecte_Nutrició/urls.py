@@ -24,5 +24,7 @@ urlpatterns = [
     path('ingredients',     views.ingredients_view, name    =       'ingredients'),
     path('new_ingredient',  views.new_ingredient,   name    =       'new_ingredient'),
     path('consultar',       views.select),
+    path('recipes',         views.recipes_view,     name    =   'recipes'),
+    path('new_recipe',      views.new_recipe,       name    =   'new_recepy'),
 
 ]
