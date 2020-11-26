@@ -19,10 +19,10 @@ from App import views
 
 urlpatterns = [
     path('admin/',          admin.site.urls),
-    path('home',            views.home_page_view,   name    =   'home'),
-    path('receptes',        views.receptes_view,    name    =   'receptes'),
-    path('ingredients',     views.ingredients_view, name    =   'ingredients'),
-    path('new_ingredient',  views.new_ingredient,   name    =    'new_ingredient'),
+    path('home',            views.home_page_view,   name    =       'home'),
+    path('receptes',        views.receptes_view,    name    =       'receptes'),
+    path('ingredients',     views.ingredients_view, name    =       'ingredients'),
+    path('new_ingredient',  views.new_ingredient,   name    =       'new_ingredient'),
     path('consultar',       views.select),
 
 ]

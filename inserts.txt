@@ -1,0 +1,5 @@
+INSERT INTO ingredients VALUES ('Insert6','None','None','None','None','None','1','1','1','0','0','0','0','0','0','0','0','1','1','1','1','1','1','1','1','1','1','1','1');
+INSERT INTO ingredients VALUES ('Insert7','None','None','None','None','None','1','1','1','0','0','0','0','0','0','0','0','1','1','1','1','1','1','1','1','1','1','1','1');
+INSERT INTO ingredients VALUES ('Insert8','None','None','None','None','None','1','1','1','0','0','0','0','0','0','0','0','1','1','1','1','1','1','1','1','1','1','1','1');
+INSERT INTO ingredients VALUES ('Insert9','None','None','None','None','None','1','1','1','0','0','0','0','0','0','0','0','1','1','1','1','1','1','1','1','1','1','1','1');
+INSERT INTO ingredients VALUES ('Insert10',null,null,null,null,null,'1','1','1','0','0','0','0','0','0','0','0','1','1','1','1','1','1','1','1','1','1','1','1');

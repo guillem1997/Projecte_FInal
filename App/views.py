@@ -68,8 +68,12 @@ def new_ingredient(request):
     november = request.POST["value_November"]
     december = request.POST["value_December"]
 
+    insert = (f"INSERT INTO ingredients VALUES ('{name}','{kcal}','{carbohidrates}','{proteina}','{grasas}',"
+              f"'{fibra}','{omnivore}','{vegetarian}','{vegan}','{milk}','{eggs}','{fish}','{crustaceans}',"
+              f"'{nuts}','{peanut}','{gluten}','{soy}','{january}','{february}','{mars}','{april}','{may}',"
+              f"'{jun}','{july}','{august}','{september}','{october}','{november}','{december}');")
+    print(insert)
     cursor = conn.cursor()
-
     cursor.execute("INSERT INTO ingredients VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, "
                    "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (name, kcal, carbohidrates, proteina,
                                                                                    grasas, fibra, omnivore, vegetarian,
@@ -88,6 +92,8 @@ def new_ingredient(request):
     cursor.close()
     conn.close()
 
+    with open("inserts.txt", 'a+') as f:
+        print(insert.replace("'None'", "null"), file=f)
     return redirect("http://127.0.0.1:8000/ingredients")
 
 
