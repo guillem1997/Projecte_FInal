@@ -9,25 +9,11 @@ def home_page_view(request):
     return render(request, 'Home.html')
 
 
-def receptes_view(request):
-    conn = psycopg2.connect(dbname="Projecte_Final",
-                            user="postgres",
-                            password="patata")
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM plats;")
-    result = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    params = {'plats': result}
-    return render(request, 'Receptes.html', params)
-
-
 def ingredients_view(request):
     return render(request, 'Ingredients.html')
 
 
 def new_ingredient(request):
-
     conn = psycopg2.connect(dbname="Projecte_Final",
                             user="postgres",
                             password="patata")
@@ -62,19 +48,13 @@ def new_ingredient(request):
     november = request.POST["value_November"]
     december = request.POST["value_December"]
 
-    insert = (f"INSERT IGNORE INTO ingredients VALUES ('{name}','{kcal}','{carbohidrates}','{proteina}','{grasas}',"
+    insert = (f"INSERT INTO ingredients VALUES ('{name}','{kcal}','{carbohidrates}','{proteina}','{grasas}',"
               f"'{fibra}','{omnivore}','{vegetarian}','{vegan}','{milk}','{eggs}','{fish}','{crustaceans}',"
               f"'{nuts}','{peanut}','{gluten}','{soy}','{january}','{february}','{mars}','{april}','{may}',"
               f"'{jun}','{july}','{august}','{september}','{october}','{november}','{december}');")
     insert = insert.replace("''", "null")
-    print(insert)
     cursor = conn.cursor()
     cursor.execute(insert)
-
-    print(f"INSERT IGNORE INTO ingredients VALUES ('{name}','{kcal}','{carbohidrates}','{proteina}','{grasas}',"
-          f"'{fibra}','{omnivore}','{vegetarian}','{vegan}','{milk}','{eggs}','{fish}','{crustaceans}',"
-          f"'{nuts}','{peanut}','{gluten}','{soy}','{january}','{february}','{mars}','{april}','{may}',"
-          f"'{jun}','{july}','{august}','{september}','{october}','{november}','{december}');")
     conn.commit()
     cursor.close()
     conn.close()
@@ -84,20 +64,9 @@ def new_ingredient(request):
     return redirect("http://127.0.0.1:8000/ingredients")
 
 
-def select(request):
-    conn = psycopg2.connect(dbname="projecte_final",
-                            user="aram",
-                            password='patata')
-    cursor = conn.cursor()
-    cursor.execute("select * from ingredients")
-    result = cursor.fetchall()
-    cursor.close()
-    conn.close()
-
-    return HttpResponse(result)
-
 def recipes_view(request):
     return render(request, 'inserts_receptes.html')
+
 
 def new_recipe(request):
     conn = psycopg2.connect(dbname="Projecte_Final",
