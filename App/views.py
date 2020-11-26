@@ -27,13 +27,7 @@ def ingredients_view(request):
 
 
 def new_ingredient(request):
-    new_post = {}
-    for clau in request.POST:
-        if request.POST[clau] == "":
-            new_post[clau] = None
-        else:
-            new_post[clau] = request.POST[clau]
-    request.POST = new_post
+
     conn = psycopg2.connect(dbname="Projecte_Final",
                             user="postgres",
                             password="patata")
@@ -68,23 +62,16 @@ def new_ingredient(request):
     november = request.POST["value_November"]
     december = request.POST["value_December"]
 
-    insert = (f"INSERT INTO ingredients VALUES ('{name}','{kcal}','{carbohidrates}','{proteina}','{grasas}',"
+    insert = (f"INSERT IGNORE INTO ingredients VALUES ('{name}','{kcal}','{carbohidrates}','{proteina}','{grasas}',"
               f"'{fibra}','{omnivore}','{vegetarian}','{vegan}','{milk}','{eggs}','{fish}','{crustaceans}',"
               f"'{nuts}','{peanut}','{gluten}','{soy}','{january}','{february}','{mars}','{april}','{may}',"
               f"'{jun}','{july}','{august}','{september}','{october}','{november}','{december}');")
+    insert = insert.replace("''", "null")
     print(insert)
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO ingredients VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, "
-                   "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (name, kcal, carbohidrates, proteina,
-                                                                                   grasas, fibra, omnivore, vegetarian,
-                                                                                   vegan, milk, eggs, fish, crustaceans,
-                                                                                   nuts, peanut, gluten, soy, january,
-                                                                                   february, mars, april, may, jun,
-                                                                                   july,
-                                                                                   august, september, october, november,
-                                                                                   december))
+    cursor.execute(insert)
 
-    print(f"INSERT INTO ingredients VALUES ('{name}','{kcal}','{carbohidrates}','{proteina}','{grasas}',"
+    print(f"INSERT IGNORE INTO ingredients VALUES ('{name}','{kcal}','{carbohidrates}','{proteina}','{grasas}',"
           f"'{fibra}','{omnivore}','{vegetarian}','{vegan}','{milk}','{eggs}','{fish}','{crustaceans}',"
           f"'{nuts}','{peanut}','{gluten}','{soy}','{january}','{february}','{mars}','{april}','{may}',"
           f"'{jun}','{july}','{august}','{september}','{october}','{november}','{december}');")
@@ -93,7 +80,7 @@ def new_ingredient(request):
     conn.close()
 
     with open("inserts.txt", 'a+') as f:
-        print(insert.replace("'None'", "null"), file=f)
+        print(insert, file=f)
     return redirect("http://127.0.0.1:8000/ingredients")
 
 
