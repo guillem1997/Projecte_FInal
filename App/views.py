@@ -73,15 +73,17 @@ def new_recipe(request):
                             user="postgres",
                             password="patata")
 
+
     title = request.POST["value_title"]
     time = request.POST["value_time"]
     difficulty = request.POST["value_difficulty"]
     description = request.POST["value_description"]
 
     cursor = conn.cursor()
-
-    cursor.execute("INSERT INTO plats VALUES (default, %s, %s, %s, %s)", (title, time, difficulty, description))
-
+    cursor.execute("SELECT nextval('plats_id_seq');")
+    contador = cursor.fetchall()
+    contador = contador[0][0]
+    cursor.execute("INSERT INTO plats VALUES (%s, %s, %s, %s, %s)", (contador,title, time, difficulty, description))
     conn.commit()
     cursor.close()
     conn.close()
