@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from django.shortcuts import redirect
 import psycopg2
+import psycopg2.extras
 
 
 # Create your views here.
@@ -11,6 +12,9 @@ def home_page_view(request):
 
 def ingredients_view(request):
     return render(request, 'Ingredients.html')
+
+def recipes_view(request):
+    return render(request, 'recipes.html')
 
 
 def new_ingredient(request):
@@ -64,9 +68,19 @@ def new_ingredient(request):
     return redirect("http://127.0.0.1:8000/ingredients")
 
 
-def recipes_view(request):
-    return render(request, 'inserts_receptes.html')
-
+def inserts_recipes(request):
+    conn = psycopg2.connect(dbname="Projecte_Final",
+                            user="postgres",
+                            password="patata")
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute("SELECT * FROM ingredients;")
+    result = cursor.fetchall()
+    conn.commit()
+    cursor.close()
+    conn.close()
+    params = {'ingredients': result}
+    print(result)
+    return render(request, 'inserts_recipes.html', params)
 
 def new_recipe(request):
     conn = psycopg2.connect(dbname="Projecte_Final",
@@ -87,3 +101,6 @@ def new_recipe(request):
     conn.close()
 
     return redirect("http://127.0.0.1:8000/recipes")
+
+
+
