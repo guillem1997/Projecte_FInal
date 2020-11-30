@@ -13,6 +13,7 @@ def home_page_view(request):
 def ingredients_view(request):
     return render(request, 'Ingredients.html')
 
+
 def recipes_view(request):
     return render(request, 'recipes.html')
 
@@ -76,11 +77,14 @@ def inserts_recipes(request):
     cursor.execute("SELECT * FROM ingredients;")
     result = cursor.fetchall()
     conn.commit()
+    cursor.execute("SELECT column_name FROM information_schema.columns WHERE table_name = 'ingredients';")
+    result2 = cursor.fetchall()
+    conn.commit()
     cursor.close()
     conn.close()
-    params = {'ingredients': result}
-    print(result)
+    params = {'ingredients': result, 'names': result2}
     return render(request, 'inserts_recipes.html', params)
+
 
 def new_recipe(request):
     conn = psycopg2.connect(dbname="Projecte_Final",
@@ -101,6 +105,3 @@ def new_recipe(request):
     conn.close()
 
     return redirect("http://127.0.0.1:8000/recipes")
-
-
-

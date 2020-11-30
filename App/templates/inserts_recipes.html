@@ -17,16 +17,16 @@
                     li[i].style.display = "";
                 } else {
                     li[i].style.display = "none";
-        }
-    }
-}
+                }
+            }
     </script>
-
 </head>
 <body>
-    <a href="{% url 'home' %}">         Home Page</a>
-    <a href="{% url 'recipes' %}">      Recipes</a>
-    <a href="{% url 'ingredients' %}">  Ingredients</a>
+    <div class='header'>
+        <a href="{% url 'home' %}">         Home Page</a>
+        <a href="{% url 'recipes' %}">      Recipes</a>
+        <a href="{% url 'ingredients' %}">  Ingredients</a>
+    </div>
     <br><br>Insert new Recipe:
     <form id="Recipe" action="/new_recipe" method="POST" >
         {% csrf_token %}
@@ -54,12 +54,21 @@
         <li><a href="#">Christina</a></li>
         <li><a href="#">Cindy</a></li>
     </ul>
-    {% for name_ingredient in ingredients %}
-    <fieldset>
-        <legend>{{ name_ingredient.name_ingredient }} - {{ name_ingredient.december }}</legend>
-        {{ name_ingredient.ingredients }} <br>
-    </fieldset>
-    {% endfor %}
+    <table style="width:100%">
+        <tr>
+            {% for name in names %}
+                <th>{{name.0}}</th>
+            {% endfor %}
+        </tr>
+        {% for ingredient in ingredients %}
+            <tr>
+                {%for column in ingredient %}
+                    <td>{{column}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+    </table>
 
     <input form = "Recipe" type="submit">
 
