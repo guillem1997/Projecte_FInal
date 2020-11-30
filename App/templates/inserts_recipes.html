@@ -23,12 +23,14 @@
                 }
             }
             function addItem(){
-                var ul = document.getElementById("dynamic-list");
-                var candidate = document.getElementById("candidate");
-                var li = document.createElement("li");
-                li.setAttribute('id',candidate.value);
-                li.appendChild(document.createTextNode(candidate.value));
-                ul.appendChild(li);
+                var form = document.getElementById("Recipe");
+                var ingredient = document.getElementById("ingredient");
+                var input = document.createElement("input");
+                input.setAttribute('id',ingredient.value);
+                input.setAttribute("type","checkbox");
+                input.setAttribute("value",ingredient.value);
+                form.appendChild(input);
+                document.getElementById("Recipe").appendChild(input);
             }
 
             function removeItem(){
@@ -52,19 +54,20 @@
         {% csrf_token %}
         Title:                   <input type="text" name="value_title"      size="40"><br>
         Preparation time:        <input type="text" name="value_time"       size="40"><br>
+         <label for="difficulty">Difficulty:</label>
+            <select form="Recipe" name="value_difficulty" id="difficulty">
+                <option value="easy">   Easy    </option>
+                <option value="medium"> Medium  </option>
+                <option value="hard">   Hard    </option>
+                <option value="expert"> Expert  </option>
+            </select><br>
+        <label>Instructions:</label><br>
+            <textarea form="Recipe" name="value_description" cols="100" rows="20"></textarea><br><br>
+        <label>Ingredients:</label><br>
     </form>
-    <label for="difficulty">Difficulty:</label>
-        <select form="Recipe" name="value_difficulty" id="difficulty">
-            <option value="easy">   Easy    </option>
-            <option value="medium"> Medium  </option>
-            <option value="hard">   Hard    </option>
-            <option value="expert"> Expert  </option>
-        </select><br>
-    Instructions:<br>
-    <textarea form="Recipe" name="value_description" cols="100" rows="20"></textarea><br><br>
 
-    <ul id="dynamic-list"></ul>
-    <input type="text" id="candidate" onkeyup="search_table()" placeholder="Search for ingredients..">
+
+    <input type="text" id="ingredient" onkeyup="search_table()" placeholder="Search for ingredients..">
 
     <button onclick="addItem()">add item</button>
     <button onclick="removeItem()">remove item</button>
