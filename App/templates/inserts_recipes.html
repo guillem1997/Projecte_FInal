@@ -4,21 +4,41 @@
     <meta charset="UTF-8">
     <title>Recipes</title>
     <script>
-            function myFunction() {
-                var input, filter, ul, li, a, i, txtValue;
-                input = document.getElementById("myInput");
+            function search_table() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("candidate");
                 filter = input.value.toUpperCase();
-                ul = document.getElementById("myUL");
-                li = ul.getElementsByTagName("li");
-                for (i = 0; i < li.length; i++) {
-                a = li[i].getElementsByTagName("a")[0];
-                txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
                 }
             }
+            function addItem(){
+                var ul = document.getElementById("dynamic-list");
+                var candidate = document.getElementById("candidate");
+                var li = document.createElement("li");
+                li.setAttribute('id',candidate.value);
+                li.appendChild(document.createTextNode(candidate.value));
+                ul.appendChild(li);
+            }
+
+            function removeItem(){
+                var ul = document.getElementById("dynamic-list");
+                var candidate = document.getElementById("candidate");
+                var item = document.getElementById(candidate.value);
+                ul.removeChild(item);
+            }
+
+
     </script>
 </head>
 <body>
@@ -43,19 +63,14 @@
     Instructions:<br>
     <textarea form="Recipe" name="value_description" cols="100" rows="20"></textarea><br><br>
 
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for ingredients..">
+    <ul id="dynamic-list"></ul>
+    <input type="text" id="candidate" onkeyup="search_table()" placeholder="Search for ingredients..">
 
-    <ul id="myUL">
-        <li><a href="#">Adele</a></li>
-        <li><a href="#">Agnes</a></li>
-        <li><a href="#">Billy</a></li>
-        <li><a href="#">Bob</a></li>
-        <li><a href="#">Calvin</a></li>
-        <li><a href="#">Christina</a></li>
-        <li><a href="#">Cindy</a></li>
-    </ul>
-    <table style="width:100%">
-        <tr>
+    <button onclick="addItem()">add item</button>
+    <button onclick="removeItem()">remove item</button>
+
+    <table id="myTable" style="width:100%">
+        <tr class="header">
             {% for name in names %}
                 <th>{{name.0}}</th>
             {% endfor %}
