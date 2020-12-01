@@ -3,34 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Recipes</title>
+    <style>
+        #myInput {
+          background-image: url('/static/images/search_icon.svg.png');  /* Add a search icon to input */
+          background-position: 10px 12px;                               /* Position the search icon */
+          background-repeat: no-repeat;                                 /* Do not repeat the icon image */
+          background-size: 5%;                                          /* Full-width */
+          font-size: 16px;                                              /* Increase font-size */
+          padding: 12px 20px 12px 40px;                                 /* Add some padding */
+          border: 1px solid #ddd;                                       /* Add a grey border */
+          margin-bottom: 12px;                                          /* Add some space below the input */
+        }
+
+        #myTable {
+          border-collapse: collapse;                                    /* Collapse borders */
+          width: 100%;                                                  /* Full-width */
+          border: 1px solid #ddd;                                       /* Add a grey border */
+          font-size: 18px;                                              /* Increase font-size */
+        }
+
+        #myTable th, #myTable td {
+          text-align: left;                                             /* Left-align text */
+          padding: 12px;                                                /* Add padding */
+        }
+
+        #myTable tr {
+          border-bottom: 1px solid #ddd;                                /* Add a bottom border to all table rows */
+        }
+
+        #myTable tr.header, #myTable tr:hover {
+          background-color: #f1f1f1;                                    /* Add a grey background color to the table
+                                                                           header and on hover */
+        }
+    </style>
     <script>
-            function search_table() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("candidate");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
+            function myFunction() {
+              // Declare variables
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+
+              // Loop through all table rows, and hide those who don't match the search query
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
                 }
-            }
-            function addItem(){
-                var form = document.getElementById("Recipe");
-                var ingredient = document.getElementById("ingredient");
-                var input = document.createElement("input");
-                input.setAttribute('id',ingredient.value);
-                input.setAttribute("type","checkbox");
-                input.setAttribute("value",ingredient.value);
-                form.appendChild(input);
-                document.getElementById("Recipe").appendChild(input);
+              }
             }
 
             function removeItem(){
@@ -50,24 +76,23 @@
         <a href="{% url 'ingredients' %}">  Ingredients</a>
     </div>
     <br><br>Insert new Recipe:
-    <form id="Recipe" action="/new_recipe" method="POST" >
+    <form id="recipe_form" action="/new_recipe" method="POST" >
         {% csrf_token %}
         Title:                   <input type="text" name="value_title"      size="40"><br>
         Preparation time:        <input type="text" name="value_time"       size="40"><br>
          <label for="difficulty">Difficulty:</label>
-            <select form="Recipe" name="value_difficulty" id="difficulty">
+            <select form="recipe_form" name="value_difficulty" id="difficulty">
                 <option value="easy">   Easy    </option>
                 <option value="medium"> Medium  </option>
                 <option value="hard">   Hard    </option>
                 <option value="expert"> Expert  </option>
             </select><br>
         <label>Instructions:</label><br>
-            <textarea form="Recipe" name="value_description" cols="100" rows="20"></textarea><br><br>
+            <textarea form="recipe_form" name="value_description" cols="100" rows="20"></textarea><br><br>
         <label>Ingredients:</label><br>
     </form>
 
-
-    <input type="text" id="ingredient" onkeyup="search_table()" placeholder="Search for ingredients..">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for ingredients..">
 
     <button onclick="addItem()">add item</button>
     <button onclick="removeItem()">remove item</button>
@@ -88,7 +113,7 @@
 
     </table>
 
-    <input form = "Recipe" type="submit">
+    <input form = "recipe_form" type="submit">
 
 </body>
 </html>
