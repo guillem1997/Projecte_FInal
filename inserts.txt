@@ -4,3 +4,5 @@ INSERT INTO ingredients VALUES ('Insert8','None','None','None','None','None','1'
 INSERT INTO ingredients VALUES ('Insert9','None','None','None','None','None','1','1','1','0','0','0','0','0','0','0','0','1','1','1','1','1','1','1','1','1','1','1','1');
 INSERT INTO ingredients VALUES ('Insert10',null,null,null,null,null,'1','1','1','0','0','0','0','0','0','0','0','1','1','1','1','1','1','1','1','1','1','1','1');
 INSERT INTO ingredients VALUES ('Input12',null,null,null,null,null,'1','1','1','0','0','0','0','0','0','0','0','1','1','1','1','1','1','1','1','1','1','1','1');
+INSERT INTO ingredients VALUES ('patata',null,null,null,null,null,'1','1','1','0','0','0','0','0','0','0','0','1','1','1','1','1','1','1','1','1','1','1','1');
+INSERT INTO ingredients VALUES ('aigua',null,null,null,null,null,'1','1','1','0','0','0','0','0','0','0','0','1','1','1','1','1','1','1','1','1','1','1','1');

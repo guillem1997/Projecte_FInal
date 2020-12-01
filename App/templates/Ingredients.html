@@ -1,23 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Ingredients</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <a href="{% url 'home' %}">Página Principal</a>
-    <a href="{% url 'recipes' %}">Receptes</a>
-    <a href="{% url 'ingredients' %}">Ingredients</a>
-    <br><br>Insert new Ingredient:
+    <nav class="nav nav-pills flex-column flex-sm-row">
+      <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'home' %}">Home</a>
+      <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'recipes' %}">Recipes</a>
+      <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'ingredients' %}">Ingredients</a>
+    </nav>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<!--   <form>-->
+<!--        {% csrf_token %}-->
+<!--      <div class="form-group">-->
+<!--        <label for="exampleInputEmail1">Insert new ingredient</label>-->
+<!--        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ingredient">-->
+<!--        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="exampleInputPassword1">Password</label>-->
+<!--        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+<!--      </div>-->
+<!--      <div class="form-check">-->
+<!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--        <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+
+<!--      </div>-->
+
+<!--      <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--    </form>-->
+
+
     <form action="/new_ingredient" method="post" >
         {% csrf_token %}
-        <p>Name:            <input type="text"      name="value_ingredient"              size="40"></p>
-        <p>Nutritional Facts:<br>
-            Kcal:           <input type="text"      name="value_Kcal"                    size="5"><br>
-            Carbohydrates:  <input type="text"      name="value_Carbohidrates"           size="5"><br>
+        <h5>Insert new ingredient</h5> <br>
+        <div class="form-group">
+            <label for="Name">name:</label>
+            <input type="text"      name="value_ingredient"    id="name"     size="40"></p>
+        </div>
+        <div class="form-group">
+            <label for="kcal">Nutritional facts:</label>
+            <input type="text"      name="value_Kcal"          id="kcal"          size="5"><br>
+        </div>
+        <div class="form-group">
+             <label for="Carbohydrates">Carbohydrates:</label>
+             <input type="text"      name="value_Carbohidrates"     id="Carbohydrates"      size="5"><br>
+        </div>
+        <div class="form-group">
             Protein:        <input type="text"      name="value_Proteina"                size="5"><br>
+        </div>
+        <div class="form-group">
             Fat:            <input type="text"      name="value_Grasas"                  size="5"><br>
+        </div>
+        <div class="form-group">
             Fiber:          <input type="text"      name="value_Fibra"                   size="5"><br>
+         </div>
         </p>
         <p>Diet type<br>
             Omnivore        <input type="hidden"   name="value_Omnivore"    value="0">
