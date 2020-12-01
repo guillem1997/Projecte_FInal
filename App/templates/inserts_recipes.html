@@ -37,36 +37,53 @@
         }
     </style>
     <script>
-            function myFunction() {
-              // Declare variables
-              var input, filter, table, tr, td, i, txtValue;
-              input = document.getElementById("myInput");
-              filter = input.value.toUpperCase();
-              table = document.getElementById("myTable");
-              tr = table.getElementsByTagName("tr");
+            function filter_table() {
+              var input, filter, table, tr, td, i, txtValue;            //  Declare variables
+              input = document.getElementById("myInput");               //  Element we input on the text bar
+              filter = input.value.toUpperCase();                       //  Value of the filter
+              table = document.getElementById("myTable");               //  Table that we want to filter
+              tr = table.getElementsByTagName("tr");                    //  Get the rows
 
-              // Loop through all table rows, and hide those who don't match the search query
+                                                                        /*  Loop through all table rows, and hide those
+                                                                            who don't match the search query */
               for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
+                td = tr[i].getElementsByTagName("td")[0];               //  Element of the first column, row i
                 if (td) {
-                  txtValue = td.textContent || td.innerText;
-                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
+                  txtValue = td.textContent || td.innerText;            //  Get the text content
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {    //  Compare input with content
+                    tr[i].style.display = "";                           //  Don't alter the values that match
                   } else {
-                    tr[i].style.display = "none";
+                    tr[i].style.display = "none";                       //  Hide the value that don't match
                   }
                 }
               }
-            }
 
-            function removeItem(){
-                var ul = document.getElementById("dynamic-list");
-                var candidate = document.getElementById("candidate");
-                var item = document.getElementById(candidate.value);
-                ul.removeChild(item);
             }
 
 
+
+        /*
+            function filter_table2() {
+              var filter, table, row, column, i, row, txtValue;         //  Declare variables
+              filter    =   document.getElementById("value");           //  Value of the check
+              table     =   document.getElementById("myTable");         //  Table that we want to filter
+              column    =   table.getElementsByName("value");           //  Get the column
+              row       =   table.getElementsByTagName("tr");           //  Get the rows
+
+
+              for (i = 0; i < row.length; i++) {                        //  Loop through all table rows
+                row = column.getElementsByTagName("tr")[i];             //  Element of the first column, row i
+                if (filter.checked == true) {
+                  txtValue = row.textContent || row.innerText;          //  Get the text content
+                  if (txtValue = "True") {                              //  Compare input with content
+                    row[i].style.display = "";                          //  Don't alter the values that match
+                  } else {
+                    row[i].style.display = "none";                      //  Hide the value that don't match
+                  }
+                }
+            }
+
+        */
     </script>
 </head>
 <body>
@@ -92,18 +109,28 @@
         <label>Ingredients:</label><br>
     </form>
 
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for ingredients..">
+    <input type="text" id="myInput" onkeyup="filter_table()" placeholder="Search for ingredients.."><br>
 
-<<<<<<< Updated upstream
-    <button onclick="addItem()">add item</button>
-    <button onclick="removeItem()">remove item</button>
+<!--    -->
+<!--    Filters:<br>-->
+<!--    Diet type:-->
+<!--    <input type="checkbox" id = "Classic"       name = "Classic"        onchange="filter_table()">  Classic-->
+<!--    <input type="checkbox" id = "Vegetarian"    name = "Vegetarian"     onchange="filter_table()">  Vegetarian-->
+<!--    <input type="checkbox" id = "Vegan"         name = "Vegan"          onchange="filter_table()">  Vegan<br><br>-->
+
+<!--    Allergen Free:-->
+<!--    <input type="checkbox" id = "Lactose"       name = "Lactose"        onchange="filter_table()">  Lactose-->
+<!--    <input type="checkbox" id = "Eggs"          name = "Eggs"           onchange="filter_table()">  Eggs-->
+<!--    <input type="checkbox" id = "Fish"          name = "Fish"           onchange="filter_table()">  Fish-->
+<!--    <input type="checkbox" id = "Crustaceans"   name = "Crustaceans"    onchange="filter_table()">  Crustaceans-->
+<!--    <input type="checkbox" id = "Nuts"          name = "Nuts"           onchange="filter_table()">  Nuts-->
+<!--    <input type="checkbox" id = "Peanuts"       name = "Peanuts"        onchange="filter_table()">  Peanuts-->
+<!--    <input type="checkbox" id = "Gluten"        name = "Gluten"         onchange="filter_table()">  Gluten-->
+<!--    <input type="checkbox" id = "Soy"           name = "Soy"            onchange="filter_table()">  Soy<br>-->
+<!--    -->
 
     <table id="myTable" style="width:100%">
         <tr class="header">
-=======
-    <table style="width:100%">
-        <tr>
->>>>>>> Stashed changes
             {% for name in names %}
                 <th>{{name.0}}</th>
             {% endfor %}
