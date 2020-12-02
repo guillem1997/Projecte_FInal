@@ -10,6 +10,10 @@ def home_page_view(request):
     return render(request, 'Home.html')
 
 
+def header(request):
+    return render(request, 'header.html')
+
+
 def ingredients_view(request):
     return render(request, 'Ingredients.html')
 

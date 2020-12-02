@@ -25,4 +25,5 @@ urlpatterns = [
     path('recipes',             views.recipes_view,     name    =       'recipes'),
     path('new_recipe',          views.new_recipe,       name    =       'new_recepy'),
     path('inserts_recipes',     views.inserts_recipes,  name    =       'inserts_recipes'),
+    path('header',              views.header,           name    =       'header'),
 ]
