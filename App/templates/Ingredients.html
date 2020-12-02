@@ -5,120 +5,193 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Ingredients</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+<!--        .form-inline {-->
+<!--            display: flex;-->
+<!--            flex-flow: row wrap;-->
+<!--            align-items: center;-->
+<!--        }-->
+        .navbar {
+          position: fixed-top;
+          width: 100%;
+          background-color:  #85c1e9
+;
+          border-right: 250px solid white;
+          border-left: 250px solid white;
+          border-bottom: 50px solid white;
+          overflow: auto;
+        }
+
+        .navbar a {
+          float: left;
+          padding: 12px;
+          color: white;
+          text-decoration: none;
+          font-size: 17px;
+          width: 33%; /* Four links of equal widths */
+          text-align: center;
+        }
+
+        .navbar a:hover {
+          background-color:    #154360;
+        }
+
+        .navbar a.active {
+          background-color:   #2980b9 ;
+        }
+        @media screen and (max-width: 500px) {
+          .navbar a {
+            float: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+        h5 {
+            color: white;
+            }
+}
+    </style>
 </head>
+
 <body>
-    <nav class="nav nav-pills flex-column flex-sm-row">
-      <a class="flex-sm-fill text-sm-center nav-link active" href="{% url 'home' %}">Home</a>
-      <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'recipes' %}">Recipes</a>
-      <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'ingredients' %}">Ingredients</a>
-    </nav>
+<div class="navbar">
+    <a class="active" href="{% url 'home' %}">Home</a>
+    <a href="{% url 'recipes' %}">Recipes</a>
+    <a href="{% url 'ingredients' %}">Ingredients</a>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<div class="d-flex justify-content-center">
 
-
-<!--   <form>-->
-<!--        {% csrf_token %}-->
-<!--      <div class="form-group">-->
-<!--        <label for="exampleInputEmail1">Insert new ingredient</label>-->
-<!--        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ingredient">-->
-<!--        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-<!--      </div>-->
-<!--      <div class="form-group">-->
-<!--        <label for="exampleInputPassword1">Password</label>-->
-<!--        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
-<!--      </div>-->
-<!--      <div class="form-check">-->
-<!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
-<!--        <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
-
-<!--      </div>-->
-
-<!--      <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--    </form>-->
-
-
-    <form action="/new_ingredient" method="post" >
+    <form action="/new_ingredient" method="post" id="new_ingredient">
         {% csrf_token %}
         <h5>Insert new ingredient</h5> <br>
         <div class="form-group">
-            <label for="Name">name:</label>
-            <input type="text"      name="value_ingredient"    id="name"     size="40"></p>
+            <label for="name">Name:</label>
+            <input form="new_ingredient" type="text" name="value_ingredient" id="name" size="40"></p>
         </div>
-        <div class="form-group">
-            <label for="kcal">Nutritional facts:</label>
-            <input type="text"      name="value_Kcal"          id="kcal"          size="5"><br>
+
+        <h5>Nutritional facts</h5> <br>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="kcal">Kcal:</label>
+                <input type="text" name="value_Kcal" id="kcal" size="5">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Carbohydrates">Carbohydrates:</label>
+                <input type="text" name="value_Carbohidrates" id="Carbohydrates" size="5">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Protein">Protein:</label>
+                <input type="text" name="value_Proteina" id="Protein" size="5">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="Fat">Fat:</label>
+                <input type="text" name="value_Grasas" id="Fat" size="5">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="Fiber">Fiber:</label>
+                <input type="text" name="value_Fibra" id="Fiber" size="5">
+            </div>
         </div>
-        <div class="form-group">
-             <label for="Carbohydrates">Carbohydrates:</label>
-             <input type="text"      name="value_Carbohidrates"     id="Carbohydrates"      size="5"><br>
-        </div>
-        <div class="form-group">
-            Protein:        <input type="text"      name="value_Proteina"                size="5"><br>
-        </div>
-        <div class="form-group">
-            Fat:            <input type="text"      name="value_Grasas"                  size="5"><br>
-        </div>
-        <div class="form-group">
-            Fiber:          <input type="text"      name="value_Fibra"                   size="5"><br>
-         </div>
         </p>
-        <p>Diet type<br>
-            Omnivore        <input type="hidden"   name="value_Omnivore"    value="0">
-                            <input type="checkbox" name="value_Omnivore"    value="1"   checked="checked">
-            Vegetarian      <input type="hidden"   name="value_Vegetarian"  value="0">
-                            <input type="checkbox" name="value_Vegetarian"  value="1"   checked="checked">
-            Vegan           <input type="hidden"   name="value_Vegan"       value="0">
-                            <input type="checkbox" name="value_Vegan"       value="1"   checked="checked">
+        <h5>Diet type</h5> <br>
+        <div class="form-check">
+
+            <input type="hidden" class="form-check-input" name="value_Omnivore" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Omnivore" value="1" id="Omnivore"
+                   checked="checked">
+            <label for="Omnivore">Omnivore:</label>
+        </div>
+        <div class="form-check">
+
+            <input type="hidden" name="value_Vegetarian" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Vegetarian" value="1" id="Vegetarian"
+                   checked="checked">
+            <label for="Vegetarian">Vegetarian:</label>
+        </div>
+        <div class="form-check">
+
+            <input type="hidden" name="value_Vegan" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Vegan" value="1" id="Vegan"
+                   checked="checked">
+            <label for="Vegan">Vegan:</label>
+        </div>
         </p>
-        <p>Alergens<br>
-            Milk            <input type="hidden"   name="value_Milk"        value="0">
-                            <input type="checkbox" name="value_Milk"        value="1">
-            Eggs            <input type="hidden"   name="value_Eggs"        value="0">
-                            <input type="checkbox" name="value_Eggs"        value="1">
-            Fish            <input type="hidden"   name="value_Fish"        value="0">
-                            <input type="checkbox" name="value_Fish"        value="1">
-            Crustaceans     <input type="hidden"   name="value_Crustaceans" value="0">
-                            <input type="checkbox" name="value_Crustaceans" value="1">
-            Nuts            <input type="hidden"   name="value_Nuts"        value="0">
-                            <input type="checkbox" name="value_Nuts"        value="1">
-            Peanuts         <input type="hidden"   name="value_Peanuts"     value="0">
-                            <input type="checkbox" name="value_Peanuts"     value="1">
-            Gluten          <input type="hidden"   name="value_Gluten"      value="0">
-                            <input type="checkbox" name="value_Gluten"      value="1">
-            Soy             <input type="hidden"   name="value_Soy"         value="0">
-                            <input type="checkbox" name="value_Soy"         value="1">
+        <p><h5>Allergens</h5>
+        <div class="form-check inline">
+            <input type="hidden" name="value_Milk" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Milk" value="1"> Milk
+        </div>
+        <div class="form-check inline">
+            <input type="hidden" name="value_Eggs" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Eggs" value="1"> Eggs
+        </div>
+        <div class="form-check inline">
+            <input type="hidden" name="value_Fish" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Fish" value="1"> Fish
+        </div>
+        <div class="form-check inline">
+            <input type="hidden" name="value_Crustaceans" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Crustaceans" value="1"> Crustaceans
+        </div>
+        <div class="form-check inline">
+            <input type="hidden" name="value_Nuts" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Nuts" value="1"> Nuts
+        </div>
+        <div class="form-check inline">
+            <input type="hidden" name="value_Peanuts" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Peanuts" value="1"> Peanuts
+        </div>
+        <div class="form-check inline">
+            <input type="hidden" name="value_Gluten" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Gluten" value="1"> Gluten
+        </div>
+        <div class="form-check inline">
+            <input type="hidden" name="value_Soy" value="0">
+            <input type="checkbox" class="form-check-input" name="value_Soy" value="1"> Soy
+        </div>
+        <br>
         </p>
-        <p>Season<br>
-            January         <input type="hidden"   name="value_January"     value="0">
-                            <input type="checkbox" name="value_January"     value="1"   checked="checked">
-            February        <input type="hidden"   name="value_February"    value="0">
-                            <input type="checkbox" name="value_February"    value="1"   checked="checked">
-            Mars            <input type="hidden"   name="value_Mars"        value="0">
-                            <input type="checkbox" name="value_Mars"        value="1"   checked="checked">
-            April           <input type="hidden"   name="value_April"       value="0">
-                            <input type="checkbox" name="value_April"       value="1"   checked="checked">
-            May             <input type="hidden"   name="value_May"         value="0">
-                            <input type="checkbox" name="value_May"         value="1"   checked="checked">
-            Jun             <input type="hidden"   name="value_Jun"         value="0">
-                            <input type="checkbox" name="value_Jun"         value="1"   checked="checked">
-            July            <input type="hidden"   name="value_July"        value="0">
-                            <input type="checkbox" name="value_July"        value="1"   checked="checked">
-            August          <input type="hidden"   name="value_August"      value="0">
-                            <input type="checkbox" name="value_August"      value="1"   checked="checked">
-            September       <input type="hidden"   name="value_September"   value="0">
-                            <input type="checkbox" name="value_September"   value="1"   checked="checked">
-            October         <input type="hidden"   name="value_October"     value="0">
-                            <input type="checkbox" name="value_October"     value="1"   checked="checked">
-            November        <input type="hidden"   name="value_November"    value="0">
-                            <input type="checkbox" name="value_November"    value="1"   checked="checked">
-            December        <input type="hidden"   name="value_December"    value="0">
-                            <input type="checkbox" name="value_December"    value="1"   checked="checked">
+        <p><h5>Season</h5>
+            January <input type="hidden" name="value_January" value="0">
+            <input type="checkbox" name="value_January" value="1" checked="checked">
+            February <input type="hidden" name="value_February" value="0">
+            <input type="checkbox" name="value_February" value="1" checked="checked">
+            Mars <input type="hidden" name="value_Mars" value="0">
+            <input type="checkbox" name="value_Mars" value="1" checked="checked">
+            April <input type="hidden" name="value_April" value="0">
+            <input type="checkbox" name="value_April" value="1" checked="checked">
+            May <input type="hidden" name="value_May" value="0">
+            <input type="checkbox" name="value_May" value="1" checked="checked">
+            Jun <input type="hidden" name="value_Jun" value="0">
+            <input type="checkbox" name="value_Jun" value="1" checked="checked">
+            July <input type="hidden" name="value_July" value="0">
+            <input type="checkbox" name="value_July" value="1" checked="checked">
+            August <input type="hidden" name="value_August" value="0">
+            <input type="checkbox" name="value_August" value="1" checked="checked">
+            September <input type="hidden" name="value_September" value="0">
+            <input type="checkbox" name="value_September" value="1" checked="checked">
+            October <input type="hidden" name="value_October" value="0">
+            <input type="checkbox" name="value_October" value="1" checked="checked">
+            November <input type="hidden" name="value_November" value="0">
+            <input type="checkbox" name="value_November" value="1" checked="checked">
+            December <input type="hidden" name="value_December" value="0">
+            <input type="checkbox" name="value_December" value="1" checked="checked">
         </p>
         <input type="submit">
     </form>
 
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>
