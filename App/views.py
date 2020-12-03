@@ -88,6 +88,8 @@ def inserts_recipes(request):
 
 
 def new_recipe(request):
+    llista_ingredients = request.POST.getlist("value_ingredient")
+
     conn = psycopg2.connect(dbname="Projecte_Final",
                             user="postgres",
                             password="patata")
@@ -103,6 +105,8 @@ def new_recipe(request):
     contador = cursor.fetchall()
     contador = contador[0][0]
     cursor.execute("INSERT INTO plats VALUES (%s, %s, %s, %s, %s)", (contador, title, time, difficulty, description))
+    for e in llista_ingredients:
+        cursor.execute("INSERT INTO plats_ingredients VALUES (%s, %s)",(contador,e))
     conn.commit()
     cursor.close()
     conn.close()

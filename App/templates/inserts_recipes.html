@@ -47,7 +47,7 @@
                                                                         /*  Loop through all table rows, and hide those
                                                                             who don't match the search query */
               for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];               //  Element of the first column, row i
+                td = tr[i].getElementsByTagName("td")[1];               //  Element of the first column, row i
                 if (td) {
                   txtValue = td.textContent || td.innerText;            //  Get the text content
                   if (txtValue.toUpperCase().indexOf(filter) > -1) {    //  Compare input with content
@@ -131,12 +131,14 @@
 
     <table id="myTable" style="width:100%">
         <tr class="header">
+            <th>selected</th>
             {% for name in names %}
                 <th>{{name.0}}</th>
             {% endfor %}
         </tr>
         {% for ingredient in ingredients %}
             <tr>
+                <td><input form = "recipe_form"  type="checkbox"       name = "value_ingredient" value="{{ingredient.0}}"       onchange="filter_table()"></td>
                 {%for column in ingredient %}
                     <td>{{column}}</td>
                 {% endfor %}
