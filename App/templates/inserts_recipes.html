@@ -5,6 +5,7 @@
 
     <form id="recipe_form" action="/new_recipe" method="POST">
         {% csrf_token %}
+        <h5>Insert new ingredient</h5><br>
         Title: <input type="text" name="value_title" size="40"><br>
         Preparation time: <input type="text" name="value_time" size="40"><br>
         <label for="difficulty">Difficulty:</label>

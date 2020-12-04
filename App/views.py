@@ -15,7 +15,20 @@ def ingredients_view(request):
 
 
 def recipes_view(request):
-    return render(request, 'recipes.html')
+    conn = psycopg2.connect(dbname="Projecte_Final",
+                            user="postgres",
+                            password="patata")
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute("SELECT * FROM plats;")
+    result = cursor.fetchall()
+    conn.commit()
+    cursor.execute("SELECT column_name FROM information_schema.columns WHERE table_name = 'plats';")
+    result2 = cursor.fetchall()
+    conn.commit()
+    cursor.close()
+    conn.close()
+    params = {'plats': result, 'names': result2}
+    return render(request, 'recipes.html', params)
 
 
 def new_ingredient(request):

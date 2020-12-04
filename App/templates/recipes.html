@@ -1,4 +1,22 @@
 {% extends 'plantilla_navegador.html' %}
 {% load static %}
 {% block bloque_uno %}
+<input type="text" id="myInput" onkeyup="filter_table()" placeholder="Search for recipes.."><br>
+<table id="myTable" style="width:100%">
+    <tr class="header">
+        {% for name in names %}
+        <th>{{name.0}}</th>
+        {% endfor %}
+    </tr>
+    {% for e in plats %}
+    <tr>
+        {%for column in e %}
+        <td>{{column}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+</table>
+
+
 {% endblock %}
