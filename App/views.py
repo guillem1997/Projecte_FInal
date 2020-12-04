@@ -88,6 +88,7 @@ def inserts_recipes(request):
 
 
 def new_recipe(request):
+
     llista_ingredients = request.POST.getlist("value_ingredient")
 
     conn = psycopg2.connect(dbname="Projecte_Final",
