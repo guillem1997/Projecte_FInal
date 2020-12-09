@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <style>
+<!--     .form-inline {-->
+<!--            display: flex;-->
+<!--            flex-flow: row wrap;-->
+<!--            align-items: center;-->
+<!--        }-->
+
+        .navbar {
+          position: fixed-top;
+          width: 100%;
+          background-color:  #85c1e9
+;
+          border-right: 250px solid white;
+          border-left: 250px solid white;
+          border-bottom: 50px solid white;
+          overflow: auto;
+        }
+
+        .navbar a {
+          float: left;
+          padding: 12px;
+          color: white;
+          text-decoration: none;
+          font-size: 17px;
+          width: 25%; /* Four links of equal widths */
+          text-align: center;
+        }
+
+        .navbar a:hover {
+          background-color:    #154360;
+        }
+
+        .navbar a.active {
+          background-color:   #2980b9 ;
+        }
+        @media screen and (max-width: 500px) {
+          .navbar a {
+            float: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+        h5 {
+            color: white;
+            }
+}
+    </style>
+    <style>
+        #myInput {
+          background-image: url('/static/images/search_icon.svg.png');  /* Add a search icon to input */
+          background-position: 10px 12px;                               /* Position the search icon */
+          background-repeat: no-repeat;                                 /* Do not repeat the icon image */
+          background-size: 5%;                                          /* Full-width */
+          font-size: 16px;                                              /* Increase font-size */
+          padding: 12px 20px 12px 40px;                                 /* Add some padding */
+          border: 1px solid #ddd;                                       /* Add a grey border */
+          margin-bottom: 12px;                                          /* Add some space below the input */
+        }
+
+        #myTable {
+          border-collapse: collapse;                                    /* Collapse borders */
+          width: 100%;                                                  /* Full-width */
+          border: 1px solid #ddd;                                       /* Add a grey border */
+          font-size: 18px;                                              /* Increase font-size */
+        }
+
+        #myTable th, #myTable td {
+          text-align: left;                                             /* Left-align text */
+          padding: 12px;                                                /* Add padding */
+        }
+
+        #myTable tr {
+          border-bottom: 1px solid #ddd;                                /* Add a bottom border to all table rows */
+        }
+
+        #myTable tr.header, #myTable tr:hover {
+          background-color: #f1f1f1;                                    /* Add a grey background color to the table
+                                                                           header and on hover */
+        }
+    </style>
+    <script>
+            function filter_table() {
+              var input, filter, table, tr, td, i, txtValue;            //  Declare variables
+              input = document.getElementById("myInput");               //  Element we input on the text bar
+              filter = input.value.toUpperCase();                       //  Value of the filter
+              table = document.getElementById("myTable");               //  Table that we want to filter
+              tr = table.getElementsByTagName("tr");                    //  Get the rows
+
+                                                                        /*  Loop through all table rows, and hide those
+                                                                            who don't match the search query */
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];               //  Element of the first column, row i
+                if (td) {
+                  txtValue = td.textContent || td.innerText;            //  Get the text content
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {    //  Compare input with content
+                    tr[i].style.display = "";                           //  Don't alter the values that match
+                  } else {
+                    tr[i].style.display = "none";                       //  Hide the value that don't match
+                  }
+                }
+              }
+
+            }
+
+
+
+        /*
+            function filter_table2() {
+              var filter, table, row, column, i, row, txtValue;         //  Declare variables
+              filter    =   document.getElementById("value");           //  Value of the check
+              table     =   document.getElementById("myTable");         //  Table that we want to filter
+              column    =   table.getElementsByName("value");           //  Get the column
+              row       =   table.getElementsByTagName("tr");           //  Get the rows
+
+
+              for (i = 0; i < row.length; i++) {                        //  Loop through all table rows
+                row = column.getElementsByTagName("tr")[i];             //  Element of the first column, row i
+                if (filter.checked == true) {
+                  txtValue = row.textContent || row.innerText;          //  Get the text content
+                  if (txtValue = "True") {                              //  Compare input with content
+                    row[i].style.display = "";                          //  Don't alter the values that match
+                  } else {
+                    row[i].style.display = "none";                      //  Hide the value that don't match
+                  }
+                }
+            }
+
+        */
+    </script>
+</head>
+<body>
+<div class="navbar">
+    <a class="active" href="{% url 'home' %}">Home</a>
+    <a href="{% url 'recipes' %}">Recipes</a>
+    <a href="{% url 'inserts_recipes' %}">Insert new Recipe</a>
+    <a href="{% url 'ingredients' %}">Ingredients</a>
+</div>
+
+    {% block bloque_uno %}
+
+    {% endblock %}
+
+</body>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

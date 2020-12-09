@@ -19,7 +19,20 @@ def ingredients_view(request):
 
 
 def recipes_view(request):
-    return render(request, 'recipes.html')
+    conn = psycopg2.connect(dbname="Projecte_Final",
+                            user="postgres",
+                            password="patata")
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute("SELECT * FROM plats;")
+    result = cursor.fetchall()
+    conn.commit()
+    cursor.execute("SELECT column_name FROM information_schema.columns WHERE table_name = 'plats';")
+    result2 = cursor.fetchall()
+    conn.commit()
+    cursor.close()
+    conn.close()
+    params = {'plats': result, 'names': result2}
+    return render(request, 'recipes.html', params)
 
 
 def new_ingredient(request):
@@ -92,6 +105,9 @@ def inserts_recipes(request):
 
 
 def new_recipe(request):
+
+    llista_ingredients = request.POST.getlist("value_ingredient")
+
     conn = psycopg2.connect(dbname="Projecte_Final",
                             user="postgres",
                             password="patata")
@@ -107,6 +123,8 @@ def new_recipe(request):
     contador = cursor.fetchall()
     contador = contador[0][0]
     cursor.execute("INSERT INTO plats VALUES (%s, %s, %s, %s, %s)", (contador, title, time, difficulty, description))
+    for e in llista_ingredients:
+        cursor.execute("INSERT INTO plats_ingredients VALUES (%s, %s)",(contador,e))
     conn.commit()
     cursor.close()
     conn.close()
