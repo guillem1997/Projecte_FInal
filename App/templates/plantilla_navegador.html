@@ -14,6 +14,9 @@
 
         body {
             padding-top: 100px;
+            border-left: 250px solid white;
+            border-right: 250px solid white;
+
         }
         img {
             display: block;
@@ -27,11 +30,10 @@
 
         .navbar {
           position: fixed;
-          top: 10px;
+          top: 0;
           width: 100%;
+          border-right: 500px solid white;
           background-color:  #85c1e9;
-          border-right: 250px solid white;
-          border-left: 250px solid white;
           overflow: auto;
         }
 
@@ -77,10 +79,13 @@
         }
 
         #myTable {
+          margin: auto;
           border-collapse: collapse;                                    /* Collapse borders */
           width: 100%;                                                  /* Full-width */
-          border: 1px solid #ddd;                                       /* Add a grey border */
           font-size: 18px;                                              /* Increase font-size */
+          display: block;
+          overflow-x: auto;
+          white-space: nowrap;
         }
 
         #myTable th, #myTable td {
